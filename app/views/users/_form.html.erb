@@ -1,0 +1,14 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <ul class="errors" role="alert">
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+  <%= form.submit %>
+<% end %>

@@ -1,0 +1,4 @@
+<h1>User book details</h1>
+<%= render @user_book %>
+<p><%= link_to "Edit", edit_user_book_path(@user_book) %></p>
+<%= button_to "Remove assignment", user_book_path(@user_book), method: :delete %>
