@@ -4,6 +4,7 @@
 /tmp/*
 !/tmp/.keep
 !/tmp/pids/
+/tmp/pids/*
 !/tmp/pids/.keep
 /config/master.key
 /config/credentials/*.key
