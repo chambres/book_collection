@@ -29,9 +29,10 @@ RSpec.describe "User books", type: :request do
     expect(response).to have_http_status(:ok)
     patch user_book_path(link), params: { user_book: { book_id: second.id } }
     expect(link.reload.book).to eq(second)
-    expect { delete user_book_path(link) }.to change(UserBook, :count).by(-1)
+    expect { delete user_book_path(link) }
+      .to change(UserBook, :count).by(-1).and change(Book, :count).by(0)
     expect(User.exists?(user.id)).to be(true)
-    expect(Book.count).to eq(2)
+    expect(Book.where(id: [ first.id, second.id ]).count).to eq(2)
   end
 
   it "shows errors for empty selections" do
