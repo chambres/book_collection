@@ -9,7 +9,7 @@
     "WEB_CONCURRENCY": "1"
   },
   "formation": {
-    "web": { "quantity": 1, "size": "basic" }
+    "web": { "quantity": 1, "size": "eco" }
   },
   "addons": [{ "plan": "heroku-postgresql:essential-0" }]
 }
