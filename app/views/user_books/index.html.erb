@@ -1,0 +1,22 @@
+<h1>User Books</h1>
+<p><%= link_to "New user book", new_user_book_path %></p>
+<% if @user_books.empty? %>
+  <p>No books assigned yet.</p>
+<% else %>
+  <table>
+    <thead><tr><th>User</th><th>Book</th><th>Actions</th></tr></thead>
+    <tbody>
+      <% @user_books.each do |user_book| %>
+        <tr>
+          <td><%= user_book.user.username %></td>
+          <td><%= user_book.book.title %></td>
+          <td class="actions">
+            <%= link_to "Show", user_book_path(user_book) %>
+            <%= link_to "Edit", edit_user_book_path(user_book) %>
+            <%= button_to "Remove", user_book_path(user_book), method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

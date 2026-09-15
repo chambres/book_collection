@@ -261,5 +261,8 @@ DEPENDENCIES
   rspec-rails
   tzinfo-data
 
+RUBY VERSION
+   ruby 3.4.10p104
+
 BUNDLED WITH
    2.6.9
