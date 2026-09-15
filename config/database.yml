@@ -8,11 +8,11 @@ default: &default
 
 development:
   <<: *default
-  database: book_collection_development
+  database: <%= ENV.fetch("DB_NAME", "book_collection_development") %>
 
 test:
   <<: *default
-  database: book_collection_test
+  database: <%= ENV.fetch("TEST_DB_NAME", "book_collection_test") %>
 
 production:
   adapter: postgresql

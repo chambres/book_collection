@@ -22,5 +22,8 @@ group :development, :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem "rspec-rails"
+  gem "simplecov", require: false
+  gem "brakeman", require: false
+  gem "rubocop-rails-omakase", require: false
 end

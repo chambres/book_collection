@@ -19,7 +19,7 @@ RSpec.describe "Books", type: :request do
 
   it "shows the list, new form, details, edit and delete pages" do
     book = Book.create!(title: "Dune")
-    [books_path, new_book_path, book_path(book), edit_book_path(book), delete_book_path(book)].each do |path|
+    [ books_path, new_book_path, book_path(book), edit_book_path(book), delete_book_path(book) ].each do |path|
       get path
       expect(response).to have_http_status(:ok)
       expect(response.body).to include('href="/"')

@@ -1,0 +1,53 @@
+name: Week 3 Rails CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: books
+          POSTGRES_PASSWORD: ci_only_password
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U books"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      RAILS_ENV: test
+      DB_HOST: localhost
+      DB_USER: books
+      DB_PASSWORD: ci_only_password
+      TEST_DB_NAME: week3_ci_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4.10'
+          bundler-cache: true
+      - name: Prepare test database
+        run: bundle exec rails db:prepare
+      - name: RSpec and SimpleCov
+        run: |
+          mkdir -p reports
+          bundle exec rspec --format progress --format html --out reports/rspec.html
+      - name: Brakeman security scan
+        if: ${{ !cancelled() }}
+        run: |
+          mkdir -p reports
+          bundle exec brakeman --no-pager -o reports/brakeman.txt
+      - name: RuboCop style check
+        if: ${{ !cancelled() }}
+        run: |
+          mkdir -p reports
+          bundle exec rubocop --format progress --out reports/rubocop.txt
+      - name: Preserve reports and coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week3-ci-evidence
+          path: |
+            reports/
+            coverage/

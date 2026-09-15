@@ -10,3 +10,5 @@
 /config/credentials/*.key
 /.env*
 /public/assets
+/coverage/
+/reports/
