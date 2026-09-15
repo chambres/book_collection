@@ -11,3 +11,9 @@ docker compose up --build
 ```
 
 Open http://localhost:3300.
+
+## Tests
+
+```sh
+docker compose exec web bundle exec rspec
+```

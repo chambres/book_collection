@@ -10,5 +10,17 @@
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
+  <div class="field">
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price, step: "0.01" %>
+  </div>
+  <fieldset class="field">
+    <legend>Published date</legend>
+    <%= form.date_select :published_date, { start_year: 1800, end_year: Date.current.year + 1, include_blank: true }, { "aria-label": "Published date" } %>
+  </fieldset>
   <%= form.submit %>
 <% end %>
