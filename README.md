@@ -1,11 +1,13 @@
 # Book Collection
 
-A course project for managing a collection of books.
+CSCE 431 book collection app.
 
-## GitHub Workflow
+## Run
 
-Development changes move through these branches:
+Start Docker Desktop, then run:
 
-1. `dev`
-2. `test`
-3. `main`
+```sh
+docker compose up --build
+```
+
+Open http://localhost:3000.
