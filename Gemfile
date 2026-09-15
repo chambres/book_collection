@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+ruby "3.4.10"
 
 # Rails 8.1 passes a positional options hash to JSON.parse.
 gem "json", "< 3"
